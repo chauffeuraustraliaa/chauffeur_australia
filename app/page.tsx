@@ -1,65 +1,727 @@
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Banknote,
+  Building2,
+  CarTaxiFront,
+  CheckCircle2,
+  Clock,
+  MapPin,
+  Minus,
+  PhoneCall,
+  PlaneTakeoff,
+  Plus,
+  Quote,
+  ShieldCheck,
+  Star,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
+
+import { CitySkyline } from "@/components/city-skyline";
+import { Reveal } from "@/components/reveal";
+import { Button } from "@/components/ui/button";
+
+const trustPoints = [
+  { icon: ShieldCheck, label: "Professional Drivers" },
+  { icon: Banknote, label: "Fixed Prices" },
+  { icon: PlaneTakeoff, label: "Flight Monitoring" },
+  { icon: Clock, label: "24/7 Support" },
+  { icon: CarTaxiFront, label: "Comfortable Vehicles" },
+];
+
+const services = [
+  {
+    icon: PlaneTakeoff,
+    title: "Airport Transfers",
+    description:
+      "Reliable airport pickup and drop-off services for stress-free travel.",
+  },
+  {
+    icon: CarTaxiFront,
+    title: "Private Taxi Transfers",
+    description:
+      "Comfortable door-to-door transportation for individuals and groups.",
+  },
+  {
+    icon: Building2,
+    title: "Corporate Transfers",
+    description: "Professional business transportation for executives.",
+  },
+  {
+    icon: MapPin,
+    title: "Hotel Transfers",
+    description:
+      "Easy transportation between airports, hotels and destinations.",
+  },
+  {
+    icon: Users,
+    title: "Event Transfers",
+    description:
+      "Dependable group transportation for conferences, weddings and events.",
+  },
+];
+
+const cities = [
+  { name: "Melbourne Taxi Transfers", state: "VIC" },
+  { name: "Sydney Airport Transfers", state: "NSW" },
+  { name: "Brisbane Taxi Services", state: "QLD" },
+  { name: "Perth Airport Transfers", state: "WA" },
+  { name: "Adelaide Private Transfers", state: "SA" },
+];
+
+const whyChooseUs = [
+  {
+    number: "01",
+    icon: Clock,
+    title: "Reliable Pickup",
+    description: "Drivers track your flight and arrive right on time.",
+  },
+  {
+    number: "02",
+    icon: ShieldCheck,
+    title: "Professional Drivers",
+    description: "Licensed, experienced and vetted for your safety.",
+  },
+  {
+    number: "03",
+    icon: Banknote,
+    title: "Transparent Pricing",
+    description: "One fixed price, agreed upfront with no surprises.",
+  },
+  {
+    number: "04",
+    icon: CarTaxiFront,
+    title: "Comfortable Vehicles",
+    description: "A well-maintained, modern fleet for every trip.",
+  },
+  {
+    number: "05",
+    icon: CheckCircle2,
+    title: "Easy Booking Process",
+    description: "Request, confirm and travel in just a few minutes.",
+  },
+];
+
+const steps = [
+  {
+    title: "1. Submit Your Booking Request",
+    description:
+      "Tell us your pickup location, destination and travel time in a few clicks.",
+  },
+  {
+    title: "2. Receive Your Quote",
+    description:
+      "We'll send you a fixed, obligation-free price for your transfer.",
+  },
+  {
+    title: "3. Confirm Your Transfer",
+    description: "Confirm your booking and receive your driver details.",
+  },
+  {
+    title: "4. Enjoy Your Journey",
+    description:
+      "Sit back and relax with a professional driver handling the rest.",
+  },
+];
+
+const popularRoutes = [
+  { route: "Melbourne Airport To Melbourne CBD", duration: "35 min" },
+  { route: "Sydney Airport To City Centre", duration: "30 min" },
+  { route: "Brisbane Airport To Hotels", duration: "40 min" },
+  { route: "Perth Airport Transfers", duration: "25 min" },
+];
+
+const testimonials = [
+  {
+    name: "Traveller from Melbourne",
+    quote:
+      "Driver was waiting when we landed and the price matched the quote exactly. Made a long trip much easier.",
+  },
+  {
+    name: "Corporate client, Sydney",
+    quote:
+      "We book transfers for visiting staff every month. Always on time and the vehicles are spotless.",
+  },
+  {
+    name: "Family travelling to Brisbane",
+    quote:
+      "Booking was simple and the driver helped with our luggage and kids' car seats without any fuss.",
+  },
+];
+
+const faqs = [
+  {
+    question: "How can I book an airport transfer in Australia?",
+    answer:
+      "Submit your trip details through our booking request form and our team will confirm your driver, vehicle and pickup time.",
+  },
+  {
+    question: "Do you provide fixed price taxi transfers?",
+    answer:
+      "Yes. Every quote is a fixed price agreed before your trip, with no hidden fees or surprise meter charges.",
+  },
+  {
+    question: "Which Australian cities do you cover?",
+    answer:
+      "We connect passengers with transfer providers across Melbourne, Sydney, Brisbane, Perth, Adelaide and surrounding areas.",
+  },
+  {
+    question: "Are your drivers professional and licensed?",
+    answer:
+      "All drivers are fully licensed, experienced professionals who prioritise safety and reliability.",
+  },
+  {
+    question: "How much does an airport taxi cost in Australia?",
+    answer:
+      "Pricing depends on your route, vehicle type and distance. You'll always receive a fixed, obligation-free quote before booking.",
+  },
+  {
+    question: "Do you provide airport pickup services?",
+    answer:
+      "Yes, we offer door-to-door airport pickups with flight monitoring so your driver adjusts to delays automatically.",
+  },
+  {
+    question: "Can I book transfers for groups?",
+    answer:
+      "Yes, we offer a range of vehicles suited to solo travellers, families and larger groups.",
+  },
+  {
+    question: "Do you operate 24 hours?",
+    answer:
+      "Yes, our transfer service and customer support are available 24/7, every day of the year.",
+  },
+];
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Australia Taxi Service",
+  areaServed: {
+    "@type": "Country",
+    name: "Australia",
+  },
+  priceRange: "$$",
+};
+
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Airport & Private Taxi Transfers",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Australia Taxi Service",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "Australia",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Transfer Services",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        description: service.description,
+      },
+    })),
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div id="top" className="flex flex-1 flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+
+      {/* Hero */}
+      <section className="relative flex min-h-screen items-center overflow-hidden bg-brand-navy-deep text-white">
+        <div aria-hidden className="absolute inset-0">
+          <Image
+            src="/hero.jpg"
+            alt="Premium chauffeur vehicle"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(7,15,23,0.95)_15%,rgba(7,15,23,0.75)_50%,rgba(7,15,23,0.4)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-deep/90 via-transparent to-transparent" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+
+        <div className="relative mx-auto w-full max-w-[1280px] px-6 pt-32 pb-20 lg:pt-24">
+          <Reveal>
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-gold/30 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-[0.15em] text-brand-gold-light uppercase">
+              <span className="flex text-brand-gold" aria-hidden>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="size-3 fill-current" />
+                ))}
+              </span>
+              Premium Chauffeur Service
+            </span>
+            <h1 className="font-heading mt-5 max-w-2xl text-[36px] leading-[1.08] font-bold tracking-tight uppercase sm:text-[48px] lg:text-[64px]">
+              Reliable Airport &amp;{" "}
+              <span className="text-brand-gold">Private</span> Taxi Transfers
+            </h1>
+            <p className="mt-6 max-w-xl text-[18px] leading-8 text-white/70">
+              Book comfortable and affordable airport transfers with
+              professional drivers. We provide reliable transportation
+              solutions across Australia&apos;s major cities.
+            </p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Button
+                render={<a href="#quote" />}
+                nativeButton={false}
+                size="lg"
+                className="h-13 rounded-full bg-brand-gold px-8 text-base font-semibold text-brand-navy-deep hover:bg-brand-gold-hover"
+              >
+                Book Your Transfer
+              </Button>
+              <Button
+                render={<a href="#quote" />}
+                nativeButton={false}
+                variant="outline"
+                size="lg"
+                className="h-13 rounded-full border-white/30 bg-transparent px-8 text-base font-semibold text-white hover:bg-white/10 hover:text-white"
+              >
+                Get Instant Quote
+              </Button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Trust bar */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <Reveal>
+            <h2 className="font-heading text-center text-[28px] font-bold tracking-tight text-brand-ink uppercase sm:text-[32px]">
+              Australia&apos;s Trusted Private Transfer Service
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+              {trustPoints.map((point) => (
+                <li
+                  key={point.label}
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-brand-cream px-4 py-6 text-center transition-colors duration-300 hover:border-brand-gold"
+                >
+                  <point.icon className="size-7 text-brand-gold" aria-hidden />
+                  <span className="text-sm font-medium text-brand-ink">
+                    {point.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="services" className="mx-auto w-full max-w-[1280px] px-6 py-[120px]">
+        <Reveal>
+          <span className="block text-center text-xs font-semibold tracking-[0.2em] text-brand-gold uppercase">
+            What We Offer
+          </span>
+          <h2 className="font-heading mt-3 text-center text-[32px] font-bold tracking-tight text-brand-ink uppercase sm:text-[42px]">
+            Our Taxi &amp; Transfer Services in Australia
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="group flex flex-col gap-4 rounded-[20px] border-2 border-brand-navy bg-brand-navy p-8 shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-gold hover:shadow-xl"
+              >
+                <div className="flex size-14 items-center justify-center rounded-2xl bg-white/10 text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-brand-navy-deep">
+                  <service.icon className="size-7" aria-hidden />
+                </div>
+                <h3 className="font-heading text-2xl font-semibold text-white">
+                  {service.title}
+                </h3>
+                <p className="text-sm leading-6 text-white/60">
+                  {service.description}
+                </p>
+                <a
+                  href="#quote"
+                  className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 transition-colors group-hover:text-brand-gold"
+                >
+                  Learn More
+                  <ArrowRight
+                    className="size-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden
+                  />
+                </a>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* City coverage */}
+      <section id="cities" className="bg-brand-cream py-[120px]">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <Reveal>
+            <span className="block text-center text-xs font-semibold tracking-[0.2em] text-brand-gold uppercase">
+              Where We Operate
+            </span>
+            <h2 className="font-heading mt-3 text-center text-[32px] font-bold tracking-tight text-brand-ink uppercase sm:text-[42px]">
+              Taxi Services Across Major Australian Cities
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-[18px] text-muted-foreground">
+              We connect passengers with reliable local taxi and transfer
+              providers across Australia.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {cities.map((city, index) => (
+                <div
+                  key={city.name}
+                  className="group relative flex h-64 flex-col justify-end overflow-hidden rounded-[20px] p-6 shadow-lg"
+                >
+                  <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-110">
+                    <CitySkyline seed={index * 17 + 3} />
+                  </div>
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                  />
+                  <div className="relative">
+                    <span className="text-xs font-semibold tracking-widest text-brand-gold-light uppercase">
+                      {city.state}
+                    </span>
+                    <h3 className="font-heading mt-1 text-2xl font-semibold text-white">
+                      {city.name}
+                    </h3>
+                    <a
+                      href="#quote"
+                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 transition-colors group-hover:text-brand-gold"
+                    >
+                      Explore
+                      <ArrowUpRight className="size-4" aria-hidden />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Why choose us */}
+      <section id="why-us" className="bg-brand-navy-deep py-[120px] text-white">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <Reveal>
+            <span className="block text-center text-xs font-semibold tracking-[0.2em] text-brand-gold uppercase">
+              Our Advantage
+            </span>
+            <h2 className="font-heading mt-3 text-center text-[32px] font-bold tracking-tight uppercase sm:text-[42px]">
+              Why Choose Our Australian Taxi Service?
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+              {whyChooseUs.map((item) => (
+                <div
+                  key={item.title}
+                  className="group relative overflow-hidden rounded-[20px] border border-white/10 p-6 transition-colors duration-300 hover:border-brand-gold/50"
+                >
+                  <span className="font-heading absolute -top-3 -right-1 text-6xl font-bold text-white/5">
+                    {item.number}
+                  </span>
+                  <item.icon
+                    className="relative size-8 text-brand-gold"
+                    aria-hidden
+                  />
+                  <h3 className="font-heading relative mt-4 text-lg font-semibold">
+                    {item.title}
+                  </h3>
+                  <p className="relative mt-2 text-sm leading-6 text-white/60">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how-it-works" className="bg-white py-[120px]">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <Reveal>
+            <span className="block text-center text-xs font-semibold tracking-[0.2em] text-brand-gold uppercase">
+              Simple Process
+            </span>
+            <h2 className="font-heading mt-3 text-center text-[32px] font-bold tracking-tight text-brand-ink uppercase sm:text-[42px]">
+              How To Book Your Taxi Transfer
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ol className="relative mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              <div
+                aria-hidden
+                className="absolute top-7 right-0 left-0 hidden h-px bg-border lg:block"
+              />
+              {steps.map((step) => (
+                <li key={step.title} className="group relative flex flex-col">
+                  <div className="relative z-10 flex size-14 items-center justify-center rounded-full bg-brand-navy text-brand-gold shadow-md transition-transform duration-300 group-hover:scale-110">
+                    <span className="font-heading text-xl font-bold">
+                      {step.title.charAt(0)}
+                    </span>
+                  </div>
+                  <h3 className="font-heading mt-5 text-lg font-semibold text-brand-ink">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {step.description}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Popular routes */}
+      <section id="routes" className="bg-brand-cream py-[120px]">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <Reveal>
+            <span className="block text-center text-xs font-semibold tracking-[0.2em] text-brand-gold uppercase">
+              Frequently Travelled
+            </span>
+            <h2 className="font-heading mt-3 text-center text-[32px] font-bold tracking-tight text-brand-ink uppercase sm:text-[42px]">
+              Popular Airport Transfer Routes
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2">
+              {popularRoutes.map(({ route, duration }) => {
+                const [origin, destination] = route.split(" To ");
+                return (
+                  <div
+                    key={route}
+                    className="group flex items-center justify-between gap-4 rounded-[20px] border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold hover:shadow-lg"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-navy/5 text-brand-navy group-hover:bg-brand-gold/10 group-hover:text-brand-gold">
+                        <PlaneTakeoff className="size-5" aria-hidden />
+                      </div>
+                      <div>
+                        <p className="font-heading text-base font-semibold text-brand-ink">
+                          {origin}
+                        </p>
+                        {destination && (
+                          <p className="mt-0.5 flex items-center gap-1.5 text-sm text-muted-foreground">
+                            <ArrowRight className="size-3.5" aria-hidden />
+                            {destination}
+                          </p>
+                        )}
+                        <p className="mt-1 text-xs font-medium text-brand-gold-hover">
+                          ~{duration} travel time
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      render={<a href="#quote" />}
+                      nativeButton={false}
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-brand-navy/20 text-brand-navy hover:border-brand-gold hover:bg-brand-gold/10 hover:text-brand-navy"
+                    >
+                      Get Quote
+                    </Button>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="testimonials" className="bg-white py-[120px]">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <Reveal>
+            <span className="block text-center text-xs font-semibold tracking-[0.2em] text-brand-gold uppercase">
+              Testimonials
+            </span>
+            <h2 className="font-heading mt-3 text-center text-[32px] font-bold tracking-tight text-brand-ink uppercase sm:text-[42px]">
+              What Our Customers Say
+            </h2>
+            <div className="mt-4 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
+              <div className="flex text-brand-gold" aria-hidden>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="size-4 fill-current" />
+                ))}
+              </div>
+              <span>Rated by travellers on Google Reviews</span>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
+              {testimonials.map((testimonial) => {
+                const initials = testimonial.name
+                  .split(" ")
+                  .map((word) => word[0])
+                  .slice(0, 2)
+                  .join("")
+                  .toUpperCase();
+                return (
+                  <figure
+                    key={testimonial.name}
+                    className="flex flex-col gap-5 rounded-[20px] border border-border bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-shadow duration-300 hover:shadow-xl"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="flex size-11 items-center justify-center rounded-full bg-brand-navy text-sm font-semibold text-brand-gold">
+                          {initials}
+                        </div>
+                        <figcaption className="text-sm font-semibold text-brand-ink">
+                          {testimonial.name}
+                        </figcaption>
+                      </div>
+                      <Quote
+                        className="size-6 shrink-0 text-brand-gold/40"
+                        aria-hidden
+                      />
+                    </div>
+                    <div className="flex text-brand-gold" aria-hidden>
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="size-3.5 fill-current" />
+                      ))}
+                    </div>
+                    <blockquote className="text-sm leading-6 text-muted-foreground">
+                      &ldquo;{testimonial.quote}&rdquo;
+                    </blockquote>
+                  </figure>
+                );
+              })}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="bg-white py-[120px]">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 px-6 lg:grid-cols-[3fr_2fr] lg:items-center">
+          <div>
+            <Reveal>
+              <span className="text-xs font-semibold tracking-[0.2em] text-brand-gold uppercase">
+                Questions &amp; Answers
+              </span>
+              <h2 className="font-heading mt-3 max-w-md text-[32px] font-bold tracking-tight text-brand-ink uppercase sm:text-[42px]">
+                Frequently Asked Questions
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-8 flex flex-col">
+                {faqs.map((faq) => (
+                  <details
+                    key={faq.question}
+                    className="group border-b border-dashed border-border py-4 first:pt-0"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center gap-3 text-base font-semibold text-brand-navy">
+                      <span className="relative flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-navy transition-colors duration-300 group-open:bg-brand-gold group-open:text-brand-navy-deep">
+                        <Plus className="size-3.5 group-open:hidden" aria-hidden />
+                        <Minus
+                          className="hidden size-3.5 group-open:block"
+                          aria-hidden
+                        />
+                      </span>
+                      <h3 className="font-heading text-base">{faq.question}</h3>
+                    </summary>
+                    <p className="mt-2 pl-9 text-sm leading-6 text-muted-foreground">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <a
+                href="#quote"
+                className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.15em] text-brand-gold-hover uppercase transition-colors hover:text-brand-gold"
+              >
+                Still Have Questions?
+                <ArrowRight className="size-3.5" aria-hidden />
+              </a>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.2}>
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/faq.jpg"
+              alt="Packed suitcase ready for travel"
+              width={420}
+              height={420}
+              className="mx-auto w-full max-w-sm object-contain mix-blend-multiply"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </Reveal>
         </div>
-      </main>
+      </section>
+
+      {/* Final CTA */}
+      <section
+        id="quote"
+        className="relative overflow-hidden bg-brand-gold py-16 text-brand-navy-deep sm:py-20"
+      >
+        <div aria-hidden className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklch,white,transparent_75%),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(160deg,var(--brand-gold-light)_0%,var(--brand-gold)_60%)]" />
+        </div>
+        <Reveal className="relative mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 text-center">
+          <div className="flex size-11 items-center justify-center rounded-full bg-brand-navy-deep/10 text-brand-navy-deep">
+            <PhoneCall className="size-5" aria-hidden />
+          </div>
+          <h2 className="font-heading text-[28px] font-bold tracking-tight uppercase sm:text-[36px]">
+            Ready To Book Your Australia Transfer?
+          </h2>
+          <p className="text-[16px] text-brand-navy-deep/80 sm:text-[18px]">
+            Get a reliable taxi quote today and travel comfortably with
+            professional drivers.
+          </p>
+          <Button
+            size="lg"
+            className="h-13 mt-2 rounded-full bg-brand-navy-deep px-8 text-base font-semibold text-white hover:bg-brand-navy"
+          >
+            Request A Quote
+          </Button>
+        </Reveal>
+      </section>
     </div>
   );
 }

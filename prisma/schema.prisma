@@ -1,0 +1,171 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum JourneyType {
+  ONE_WAY
+  RETURN
+  HOURLY
+}
+
+enum LeadStatus {
+  NEW
+  PENDING_REVIEW
+  QUOTE_SENT
+  ACCEPTED
+  CONFIRMED
+  REJECTED
+  CANCELLED
+}
+
+enum CancellationReason {
+  CANCELLED_BY_ADMIN
+  CANCELLED_BY_CUSTOMER
+  NO_RESPONSE
+  EXPIRED_QUOTE
+}
+
+enum QuoteStatus {
+  DRAFT
+  SENT
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+enum BookingStatus {
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Setting {
+  id           String   @id @default("singleton")
+  companyName  String   @default("Chauffeur Australia")
+  supportEmail String   @default("support@chauffeuraustralia.com")
+  logoUrl      String?
+  currency     String   @default("AUD")
+  timezone     String   @default("Australia/Sydney")
+  updatedAt    DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leads    Lead[]
+  bookings Booking[]
+
+  @@map("customers")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+
+  leads Lead[]
+
+  @@map("services")
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  fullName String
+  email    String
+  phone    String
+
+  journeyType     JourneyType
+  pickupLocation  String
+  dropoffLocation String?
+  date            DateTime
+  time            String
+  returnDate      DateTime?
+  returnTime      String?
+  endTime         String?
+  passengers      Int
+  luggage         Int
+
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id])
+
+  specialRequests String?
+
+  status             LeadStatus          @default(NEW)
+  cancellationReason CancellationReason?
+
+  quote   Quote?
+  booking Booking?
+
+  @@map("leads")
+}
+
+model Quote {
+  id        String      @id @default(cuid())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  leadId String @unique
+  lead   Lead   @relation(fields: [leadId], references: [id])
+
+  driverCost  Decimal @db.Decimal(10, 2)
+  markup      Decimal @db.Decimal(10, 2)
+  totalPrice  Decimal @db.Decimal(10, 2)
+  currency    String  @default("AUD")
+  notes       String?
+  status      QuoteStatus @default(DRAFT)
+
+  @@map("quotes")
+}
+
+model Booking {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookingNumber String @unique
+
+  leadId String @unique
+  lead   Lead   @relation(fields: [leadId], references: [id])
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  travelDate DateTime
+  status     BookingStatus @default(CONFIRMED)
+
+  @@map("bookings")
+}
