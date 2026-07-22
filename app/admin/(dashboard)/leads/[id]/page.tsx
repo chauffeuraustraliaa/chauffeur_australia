@@ -54,6 +54,18 @@ export default async function LeadDetailPage({
     notFound();
   }
 
+  const serializedLead = {
+    ...lead,
+    quote: lead.quote
+      ? {
+          ...lead.quote,
+          driverCost: lead.quote.driverCost.toNumber(),
+          markup: lead.quote.markup.toNumber(),
+          totalPrice: lead.quote.totalPrice.toNumber(),
+        }
+      : null,
+  };
+
   const isTerminal = lead.status === "CANCELLED" || lead.status === "REJECTED";
   const currentStep = timeline.findIndex((step) => step.key === lead.status);
 
@@ -77,7 +89,7 @@ export default async function LeadDetailPage({
           </div>
           <p className="font-mono text-xs text-muted-foreground">Lead ID: {lead.id}</p>
         </div>
-        <LeadActions lead={lead} />
+        <LeadActions lead={serializedLead} />
       </div>
 
       {!isTerminal && (

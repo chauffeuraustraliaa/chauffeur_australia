@@ -21,7 +21,7 @@ export default async function AdminDashboardLayout({
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <div className="flex h-screen overflow-hidden bg-background text-foreground">
+      <div className="admin-shell flex h-screen overflow-hidden bg-background text-foreground">
         <Sidebar />
         <div className="flex flex-1 flex-col overflow-hidden">
           <Topbar

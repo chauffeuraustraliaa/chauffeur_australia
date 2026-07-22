@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter, Oswald } from "next/font/google";
 import "./globals.css";
 
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -66,11 +63,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${oswald.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <SiteHeader />
-        {children}
-        <SiteFooter />
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

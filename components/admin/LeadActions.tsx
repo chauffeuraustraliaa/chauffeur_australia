@@ -33,7 +33,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { LeadListItem } from "@/lib/types";
+import type { SerializedLead } from "@/lib/types";
 
 const cancellationReasons = [
   { value: "CANCELLED_BY_ADMIN", label: "Cancelled by Admin" },
@@ -42,7 +42,7 @@ const cancellationReasons = [
   { value: "EXPIRED_QUOTE", label: "Expired Quote" },
 ];
 
-export function LeadActions({ lead }: { lead: LeadListItem }) {
+export function LeadActions({ lead }: { lead: SerializedLead }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [quoteOpen, setQuoteOpen] = useState(false);

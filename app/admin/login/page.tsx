@@ -19,7 +19,7 @@ export default async function AdminLoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-brand-navy-deep px-6 py-16">
+    <main className="admin-shell flex min-h-screen items-center justify-center bg-brand-navy-deep px-6 py-16">
       <div className="w-full max-w-sm rounded-[20px] bg-white p-8 shadow-2xl">
         <div className="flex flex-col items-center gap-2 text-center">
           <div className="flex size-12 items-center justify-center rounded-2xl bg-brand-navy/5 text-brand-navy">
