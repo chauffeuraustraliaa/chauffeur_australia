@@ -433,8 +433,8 @@ export default function AirportTransfersPage() {
         description="Travel comfortably with professional chauffeurs offering reliable airport pickup and drop-off services across Australia's major cities."
         primaryCta="Get Instant Quote"
         secondaryCta="Book Your Chauffeur"
-        image="/hero.jpg"
-        imageAlt="Luxury chauffeur vehicle outside an Australian airport"
+        image="/chauffeur3.jpg"
+        imageAlt="Chauffeur welcoming a passenger and opening the door of a luxury vehicle"
         breadcrumbItems={[
           { label: "Airport Chauffeur Transfers", href: "/airport-transfers" },
         ]}

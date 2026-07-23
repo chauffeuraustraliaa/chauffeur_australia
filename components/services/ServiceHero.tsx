@@ -67,7 +67,7 @@ export function ServiceHero({
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button
-              render={<a href="#quote-form" />}
+              render={<a href="/get-a-quote" />}
               nativeButton={false}
               size="lg"
               className="h-13 rounded-full bg-brand-gold px-8 text-base font-semibold text-brand-navy-deep hover:bg-brand-gold-hover"
@@ -75,7 +75,7 @@ export function ServiceHero({
               {primaryCta}
             </Button>
             <Button
-              render={<a href="#quote" />}
+              render={<a href="/get-a-quote" />}
               nativeButton={false}
               variant="outline"
               size="lg"

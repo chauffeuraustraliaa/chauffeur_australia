@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { auth } from "@/lib/auth";
+import { sendBookingConfirmedEmail, sendQuoteEmail } from "@/lib/email/send";
 import { prisma } from "@/lib/prisma";
 import { quoteSchema } from "@/lib/validation";
 
@@ -52,6 +53,15 @@ export async function saveQuote(input: {
 export async function sendQuote(leadId: string) {
   await requireAdmin();
 
+  const lead = await prisma.lead.findUniqueOrThrow({
+    where: { id: leadId },
+    include: { service: true, quote: true },
+  });
+
+  if (!lead.quote) {
+    throw new Error("Create a quote before sending it.");
+  }
+
   await prisma.$transaction([
     prisma.quote.update({
       where: { leadId },
@@ -62,6 +72,19 @@ export async function sendQuote(leadId: string) {
       data: { status: "QUOTE_SENT" },
     }),
   ]);
+
+  await sendQuoteEmail(lead.email, {
+    fullName: lead.fullName,
+    serviceName: lead.service.name,
+    journeyType: lead.journeyType,
+    pickupLocation: lead.pickupLocation,
+    dropoffLocation: lead.dropoffLocation,
+    date: lead.date,
+    time: lead.time,
+    totalPrice: lead.quote.totalPrice.toNumber(),
+    currency: lead.quote.currency,
+    notes: lead.quote.notes,
+  });
 
   revalidatePath(`/admin/leads/${leadId}`);
   revalidatePath("/admin/leads");
@@ -77,7 +100,10 @@ async function generateBookingNumber() {
 export async function acceptQuote(leadId: string) {
   await requireAdmin();
 
-  const lead = await prisma.lead.findUniqueOrThrow({ where: { id: leadId } });
+  const lead = await prisma.lead.findUniqueOrThrow({
+    where: { id: leadId },
+    include: { service: true, quote: true },
+  });
   const bookingNumber = await generateBookingNumber();
 
   await prisma.$transaction([
@@ -99,6 +125,21 @@ export async function acceptQuote(leadId: string) {
       },
     }),
   ]);
+
+  if (lead.quote) {
+    await sendBookingConfirmedEmail(lead.email, {
+      fullName: lead.fullName,
+      bookingNumber,
+      serviceName: lead.service.name,
+      journeyType: lead.journeyType,
+      pickupLocation: lead.pickupLocation,
+      dropoffLocation: lead.dropoffLocation,
+      travelDate: lead.date,
+      time: lead.time,
+      totalPrice: lead.quote.totalPrice.toNumber(),
+      currency: lead.quote.currency,
+    });
+  }
 
   revalidatePath(`/admin/leads/${leadId}`);
   revalidatePath("/admin/leads");

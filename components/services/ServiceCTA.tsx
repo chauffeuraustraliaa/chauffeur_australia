@@ -28,7 +28,7 @@ export function ServiceCTA({
   title,
   description,
   buttonLabel = "Request A Quote",
-  buttonHref = "#quote-form",
+  buttonHref = "/get-a-quote",
   tone = "gold",
 }: {
   title: string;

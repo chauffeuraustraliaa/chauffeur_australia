@@ -1,6 +1,8 @@
 "use client";
 
-import { CarTaxiFront, ChevronDown, Menu, X } from "lucide-react";
+import { track } from "@vercel/analytics";
+import { ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -86,11 +88,16 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
-        <a href="#top" className="flex items-center gap-2 text-white">
-          <CarTaxiFront className="size-6 text-brand-gold" aria-hidden />
-          <span className="font-heading text-lg font-bold tracking-tight uppercase">
-            Australia Taxi Service
-          </span>
+        <a href="#top" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Chauffeur Australia"
+            width={647}
+            height={165}
+            priority
+            unoptimized
+            className="h-12 w-auto sm:h-14"
+          />
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -145,6 +152,7 @@ export function SiteHeader() {
           <Button
             render={<Link href="/get-a-quote" />}
             nativeButton={false}
+            onClick={() => track("Header Get Quote Click")}
             className="rounded-full bg-brand-gold px-6 text-brand-navy-deep hover:bg-brand-gold-hover"
           >
             Get Quote
@@ -200,7 +208,10 @@ export function SiteHeader() {
           <Button
             render={<Link href="/get-a-quote" />}
             nativeButton={false}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              setMenuOpen(false);
+              track("Header Get Quote Click");
+            }}
             className="mt-2 rounded-full bg-brand-gold px-6 text-brand-navy-deep hover:bg-brand-gold-hover"
           >
             Get Quote

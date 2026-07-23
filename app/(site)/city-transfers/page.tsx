@@ -418,8 +418,8 @@ export default function CityTransfersPage() {
         description="Travel comfortably around Australia's major cities with a professional chauffeur, booked door-to-door for business, shopping, dining and leisure."
         primaryCta="Get Instant Quote"
         secondaryCta="Book Your Chauffeur"
-        image="/hero.jpg"
-        imageAlt="Luxury chauffeur vehicle in an Australian city"
+        image="/chauffeur2.webp"
+        imageAlt="Chauffeur opening the door of a luxury vehicle in the city"
         breadcrumbItems={[{ label: "City Transfers", href: "/city-transfers" }]}
       />
 

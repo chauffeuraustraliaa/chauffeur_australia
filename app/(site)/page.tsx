@@ -2,23 +2,30 @@ import {
   ArrowRight,
   ArrowUpRight,
   Banknote,
+  Briefcase,
   Building2,
   CarTaxiFront,
   CheckCircle2,
   Clock,
+  Crown,
+  Heart,
   MapPin,
   Minus,
   PhoneCall,
   PlaneTakeoff,
   Plus,
   Quote,
+  Route,
   ShieldCheck,
+  Ship,
   Star,
   Users,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-import { CitySkyline } from "@/components/city-skyline";
+import { CityCard } from "@/components/city-card";
+import { HeroImageCarousel } from "@/components/hero-image-carousel";
 import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 
@@ -34,40 +41,97 @@ const services = [
   {
     icon: PlaneTakeoff,
     title: "Airport Transfers",
-    description:
-      "Reliable airport pickup and drop-off services for stress-free travel.",
-  },
-  {
-    icon: CarTaxiFront,
-    title: "Private Taxi Transfers",
-    description:
-      "Comfortable door-to-door transportation for individuals and groups.",
+    description: "Reliable airport pickup and drop-off, stress-free.",
+    href: "/airport-transfers",
   },
   {
     icon: Building2,
-    title: "Corporate Transfers",
-    description: "Professional business transportation for executives.",
+    title: "City Transfers",
+    description: "Private, door-to-door transfers around the city.",
+    href: "/city-transfers",
   },
   {
     icon: MapPin,
     title: "Hotel Transfers",
-    description:
-      "Easy transportation between airports, hotels and destinations.",
+    description: "Easy transfers between airports, hotels and destinations.",
+    href: "/hotel-transfers",
+  },
+  {
+    icon: Briefcase,
+    title: "Corporate Chauffeur",
+    description: "Business travel, staff and client transport.",
+    href: "/corporate-chauffeur",
+  },
+  {
+    icon: CarTaxiFront,
+    title: "Private Chauffeur",
+    description: "Personal chauffeur hire by the hour or day.",
+    href: "/private-chauffeur",
+  },
+  {
+    icon: Crown,
+    title: "Executive Transfers",
+    description: "VIP transfers for business leaders.",
+    href: "/executive-transfers",
+  },
+  {
+    icon: Heart,
+    title: "Wedding Chauffeur",
+    description: "Luxury transport for your wedding day.",
+    href: "/wedding-chauffeur",
   },
   {
     icon: Users,
-    title: "Event Transfers",
-    description:
-      "Dependable group transportation for conferences, weddings and events.",
+    title: "Event Chauffeur",
+    description: "Transfers for concerts, galas and events.",
+    href: "/event-chauffeur",
+  },
+  {
+    icon: Ship,
+    title: "Cruise Transfers",
+    description: "Transfers to and from cruise terminals.",
+    href: "/cruise-transfers",
+  },
+  {
+    icon: Route,
+    title: "Long Distance Transfers",
+    description: "Interstate and regional chauffeur transfers.",
+    href: "/long-distance-transfers",
   },
 ];
 
 const cities = [
-  { name: "Melbourne Taxi Transfers", state: "VIC" },
-  { name: "Sydney Airport Transfers", state: "NSW" },
-  { name: "Brisbane Taxi Services", state: "QLD" },
-  { name: "Perth Airport Transfers", state: "WA" },
-  { name: "Adelaide Private Transfers", state: "SA" },
+  {
+    name: "Melbourne",
+    state: "VIC",
+    tags: ["Airport Transfers", "Corporate Travel", "Hotel Transfers"],
+    image: "/melbourne.jpeg",
+    large: true,
+  },
+  {
+    name: "Sydney",
+    state: "NSW",
+    tags: ["Airport Transfers", "Corporate Travel", "Harbour Transfers"],
+    image: "/sydney.webp",
+  },
+  {
+    name: "Brisbane",
+    state: "QLD",
+    tags: ["Airport Transfers", "Corporate Travel", "Event Transfers"],
+    image: "/brisbane.jpg",
+  },
+  {
+    name: "Perth",
+    state: "WA",
+    tags: ["Airport Transfers", "Hotel Transfers", "Private Chauffeur"],
+    image: "/perth.avif",
+  },
+  {
+    name: "Adelaide",
+    state: "SA",
+    tags: ["Airport Transfers", "Corporate Travel", "Wine Region Tours"],
+    image: "/adelaide.webp",
+  },
 ];
 
 const whyChooseUs = [
@@ -268,13 +332,13 @@ export default function Home() {
       {/* Hero */}
       <section className="relative flex min-h-screen items-center overflow-hidden bg-brand-navy-deep text-white">
         <div aria-hidden className="absolute inset-0">
-          <Image
-            src="/hero.jpg"
-            alt="Premium chauffeur vehicle"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
+          <HeroImageCarousel
+            images={[
+              { src: "/hero.jpg", alt: "Premium chauffeur vehicle" },
+              { src: "/chauffeur1.jpeg", alt: "Luxury vehicle headlight and wheel detail at dusk" },
+              { src: "/chauffeur2.webp", alt: "Chauffeur opening the door of a luxury vehicle" },
+              { src: "/chauffeur3.jpg", alt: "Chauffeur welcoming a passenger into a luxury vehicle" },
+            ]}
           />
           <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(7,15,23,0.95)_15%,rgba(7,15,23,0.75)_50%,rgba(7,15,23,0.4)_100%)]" />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-deep/90 via-transparent to-transparent" />
@@ -301,7 +365,7 @@ export default function Home() {
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <Button
-                render={<a href="#quote" />}
+                render={<a href="/get-a-quote" />}
                 nativeButton={false}
                 size="lg"
                 className="h-13 rounded-full bg-brand-gold px-8 text-base font-semibold text-brand-navy-deep hover:bg-brand-gold-hover"
@@ -309,7 +373,7 @@ export default function Home() {
                 Book Your Transfer
               </Button>
               <Button
-                render={<a href="#quote" />}
+                render={<a href="/get-a-quote" />}
                 nativeButton={false}
                 variant="outline"
                 size="lg"
@@ -359,32 +423,30 @@ export default function Home() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {services.map((service) => (
-              <div
+              <Link
                 key={service.title}
-                className="group flex flex-col gap-4 rounded-[20px] border-2 border-brand-navy bg-brand-navy p-8 shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-gold hover:shadow-xl"
+                href={service.href}
+                className="group flex flex-col gap-3 rounded-2xl border-2 border-brand-navy bg-brand-navy p-5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-gold hover:shadow-xl"
               >
-                <div className="flex size-14 items-center justify-center rounded-2xl bg-white/10 text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-brand-navy-deep">
-                  <service.icon className="size-7" aria-hidden />
+                <div className="flex size-11 items-center justify-center rounded-xl bg-white/10 text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-brand-navy-deep">
+                  <service.icon className="size-5" aria-hidden />
                 </div>
-                <h3 className="font-heading text-2xl font-semibold text-white">
+                <h3 className="font-heading text-base leading-tight font-semibold text-white">
                   {service.title}
                 </h3>
-                <p className="text-sm leading-6 text-white/60">
+                <p className="text-xs leading-5 text-white/60">
                   {service.description}
                 </p>
-                <a
-                  href="#quote"
-                  className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 transition-colors group-hover:text-brand-gold"
-                >
+                <span className="mt-1 inline-flex items-center gap-1.5 text-xs font-semibold text-white/85 transition-colors group-hover:text-brand-gold">
                   Learn More
                   <ArrowRight
-                    className="size-4 transition-transform group-hover:translate-x-1"
+                    className="size-3.5 transition-transform group-hover:translate-x-1"
                     aria-hidden
                   />
-                </a>
-              </div>
+                </span>
+              </Link>
             ))}
           </div>
         </Reveal>
@@ -398,44 +460,22 @@ export default function Home() {
               Where We Operate
             </span>
             <h2 className="font-heading mt-3 text-center text-[32px] font-bold tracking-tight text-brand-ink uppercase sm:text-[42px]">
-              Taxi Services Across Major Australian Cities
+              Premium Chauffeur Services Across Australia&apos;s Major Cities
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-[18px] text-muted-foreground">
-              We connect passengers with reliable local taxi and transfer
-              providers across Australia.
+              Discover luxury airport transfers, corporate travel and private
+              chauffeur services available in Australia&apos;s most popular
+              destinations.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {cities.map((city, index) => (
-                <div
-                  key={city.name}
-                  className="group relative flex h-64 flex-col justify-end overflow-hidden rounded-[20px] p-6 shadow-lg"
-                >
-                  <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-110">
-                    <CitySkyline seed={index * 17 + 3} />
-                  </div>
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
-                  />
-                  <div className="relative">
-                    <span className="text-xs font-semibold tracking-widest text-brand-gold-light uppercase">
-                      {city.state}
-                    </span>
-                    <h3 className="font-heading mt-1 text-2xl font-semibold text-white">
-                      {city.name}
-                    </h3>
-                    <a
-                      href="#quote"
-                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 transition-colors group-hover:text-brand-gold"
-                    >
-                      Explore
-                      <ArrowUpRight className="size-4" aria-hidden />
-                    </a>
-                  </div>
-                </div>
-              ))}
+            <div className="mt-14 flex flex-col gap-6">
+              <CityCard city={cities[0]} seed={3} />
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                {cities.slice(1).map((city, index) => (
+                  <CityCard key={city.name} city={city} seed={index * 17 + 20} />
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
@@ -556,7 +596,7 @@ export default function Home() {
                       </div>
                     </div>
                     <Button
-                      render={<a href="#quote" />}
+                      render={<a href="/get-a-quote" />}
                       nativeButton={false}
                       variant="outline"
                       size="sm"
@@ -672,13 +712,13 @@ export default function Home() {
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <a
-                href="#quote"
+              <Link
+                href="/get-a-quote"
                 className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.15em] text-brand-gold-hover uppercase transition-colors hover:text-brand-gold"
               >
                 Still Have Questions?
                 <ArrowRight className="size-3.5" aria-hidden />
-              </a>
+              </Link>
             </Reveal>
           </div>
 
@@ -715,6 +755,8 @@ export default function Home() {
             professional drivers.
           </p>
           <Button
+            render={<a href="/get-a-quote" />}
+            nativeButton={false}
             size="lg"
             className="h-13 mt-2 rounded-full bg-brand-navy-deep px-8 text-base font-semibold text-white hover:bg-brand-navy"
           >

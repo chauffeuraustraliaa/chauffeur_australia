@@ -15,7 +15,7 @@ export function ServiceOfferings({
   eyebrow,
   title,
   items,
-  ctaHref = "#quote",
+  ctaHref = "/get-a-quote",
   tone = "white",
 }: {
   eyebrow: string;

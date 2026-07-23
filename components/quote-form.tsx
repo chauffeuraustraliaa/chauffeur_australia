@@ -10,9 +10,8 @@ export function QuoteForm({
   formId?: string;
 }) {
   return (
-    <form
+    <div
       id={formId}
-      action="#quote"
       className="mx-auto w-full max-w-md scroll-mt-28 rounded-[20px] bg-white p-6 text-brand-ink shadow-2xl sm:p-8"
     >
       <h2 className="font-heading text-lg font-bold tracking-tight uppercase">
@@ -74,7 +73,8 @@ export function QuoteForm({
           </label>
         </div>
         <Button
-          type="submit"
+          render={<a href="/get-a-quote" />}
+          nativeButton={false}
           size="lg"
           className="h-13 mt-1 w-full gap-2 rounded-full bg-brand-gold text-base font-semibold text-brand-navy-deep hover:bg-brand-gold-hover"
         >
@@ -82,6 +82,6 @@ export function QuoteForm({
           Get Instant Quote
         </Button>
       </div>
-    </form>
+    </div>
   );
 }

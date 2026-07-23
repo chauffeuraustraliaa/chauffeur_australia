@@ -14,7 +14,7 @@ export function AirportsGrid({
   title,
   description,
   items,
-  ctaHref = "#quote",
+  ctaHref = "/get-a-quote",
   tone = "ivory",
 }: {
   eyebrow: string;

@@ -1,4 +1,5 @@
-import { ArrowUp, CarTaxiFront, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUp, Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const quickLinks = [
@@ -18,7 +19,7 @@ const serviceLinks = [
 ];
 
 const contactDetails = [
-  { icon: Phone, label: "24/7 Booking & Customer Support" },
+  { icon: Phone, label: "+61 480 289 196", href: "tel:+61480289196" },
   { icon: Mail, label: "Fast Online Quotes, No Obligation" },
   { icon: MapPin, label: "Servicing All Major Australian Cities" },
 ];
@@ -60,11 +61,15 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-4">
-            <a href="#top" className="flex items-center gap-2 text-white">
-              <CarTaxiFront className="size-6 text-brand-gold" aria-hidden />
-              <span className="font-heading text-lg font-bold tracking-tight uppercase">
-                Australia Taxi Service
-              </span>
+            <a href="#top" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Chauffeur Australia"
+                width={647}
+                height={165}
+                unoptimized
+                className="h-11 w-auto"
+              />
             </a>
             <p className="max-w-xs text-sm leading-6">
               Caring about your journey with professional drivers and
@@ -138,14 +143,20 @@ export function SiteFooter() {
                     className="mt-0.5 size-4 shrink-0 text-brand-gold"
                     aria-hidden
                   />
-                  <span>{item.label}</span>
+                  {item.href ? (
+                    <a href={item.href} className="transition-colors hover:text-brand-gold">
+                      {item.label}
+                    </a>
+                  ) : (
+                    <span>{item.label}</span>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-3 py-6 text-xs text-white/50 sm:flex-row sm:justify-between">
+        <div className="flex flex-col items-center gap-3 py-6 pb-20 text-xs text-white/50 sm:flex-row sm:justify-between lg:pb-6">
           <p>
             &copy; {new Date().getFullYear()} Australia Taxi Service. All
             rights reserved.

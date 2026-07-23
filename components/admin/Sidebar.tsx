@@ -10,6 +10,7 @@ import {
   Ticket,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -31,13 +32,15 @@ export function Sidebar() {
 
   return (
     <aside className="flex h-full w-64 shrink-0 flex-col bg-brand-navy text-white shadow-xl">
-      <div className="flex items-center gap-2.5 px-5 py-5">
-        <div className="flex size-9 items-center justify-center rounded-xl bg-brand-gold/15 text-brand-gold">
-          <Car className="size-5" aria-hidden />
-        </div>
-        <span className="font-heading text-sm font-bold tracking-tight text-white uppercase">
-          Chauffeur Australia
-        </span>
+      <div className="flex items-center px-5 py-5">
+        <Image
+          src="/logo.png"
+          alt="Chauffeur Australia"
+          width={647}
+          height={165}
+          unoptimized
+          className="h-9 w-auto"
+        />
       </div>
 
       <nav className="flex flex-1 flex-col gap-1 px-3 pt-2">

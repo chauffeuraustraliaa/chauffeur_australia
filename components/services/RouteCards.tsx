@@ -13,7 +13,7 @@ export function RouteCards({
   title,
   intro,
   routes,
-  ctaHref = "#quote",
+  ctaHref = "/get-a-quote",
 }: {
   eyebrow: string;
   title: string;
