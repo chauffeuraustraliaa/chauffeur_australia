@@ -11,7 +11,9 @@ export function ServiceHero({
   title,
   description,
   primaryCta = "Get Instant Quote",
+  primaryHref = "/get-a-quote",
   secondaryCta = "Book Your Chauffeur",
+  secondaryHref = "/get-a-quote",
   image,
   imageAlt,
   breadcrumbItems,
@@ -20,7 +22,9 @@ export function ServiceHero({
   title: string;
   description: string;
   primaryCta?: string;
+  primaryHref?: string;
   secondaryCta?: string;
+  secondaryHref?: string;
   image: string;
   imageAlt: string;
   breadcrumbItems?: BreadcrumbItem[];
@@ -67,7 +71,7 @@ export function ServiceHero({
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button
-              render={<a href="/get-a-quote" />}
+              render={<a href={primaryHref} />}
               nativeButton={false}
               size="lg"
               className="h-13 rounded-full bg-brand-gold px-8 text-base font-semibold text-brand-navy-deep hover:bg-brand-gold-hover"
@@ -75,7 +79,7 @@ export function ServiceHero({
               {primaryCta}
             </Button>
             <Button
-              render={<a href="/get-a-quote" />}
+              render={<a href={secondaryHref} />}
               nativeButton={false}
               variant="outline"
               size="lg"

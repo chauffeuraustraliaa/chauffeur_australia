@@ -10,12 +10,13 @@ export type CityCardData = {
   tags: string[];
   image: string | null;
   large?: boolean;
+  href?: string;
 };
 
 export function CityCard({ city, seed }: { city: CityCardData; seed: number }) {
   return (
     <Link
-      href="/get-a-quote"
+      href={city.href ?? "/get-a-quote"}
       className={`group relative flex flex-col justify-end overflow-hidden rounded-[24px] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.18)] ring-1 ring-transparent transition-all duration-300 hover:-translate-y-1.5 hover:ring-brand-gold ${
         city.large ? "h-[400px]" : "h-[320px]"
       }`}

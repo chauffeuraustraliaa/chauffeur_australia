@@ -107,30 +107,35 @@ const cities = [
     tags: ["Airport Transfers", "Corporate Travel", "Hotel Transfers"],
     image: "/melbourne.jpeg",
     large: true,
+    href: "/melbourne-chauffeur-service",
   },
   {
     name: "Sydney",
     state: "NSW",
     tags: ["Airport Transfers", "Corporate Travel", "Harbour Transfers"],
     image: "/sydney.webp",
+    href: "/sydney-chauffeur-service",
   },
   {
     name: "Brisbane",
     state: "QLD",
     tags: ["Airport Transfers", "Corporate Travel", "Event Transfers"],
     image: "/brisbane.jpg",
+    href: "/brisbane-chauffeur-service",
   },
   {
     name: "Perth",
     state: "WA",
     tags: ["Airport Transfers", "Hotel Transfers", "Private Chauffeur"],
     image: "/perth.avif",
+    href: "/perth-chauffeur-service",
   },
   {
     name: "Adelaide",
     state: "SA",
     tags: ["Airport Transfers", "Corporate Travel", "Wine Region Tours"],
     image: "/adelaide.webp",
+    href: "/adelaide-chauffeur-service",
   },
 ];
 
