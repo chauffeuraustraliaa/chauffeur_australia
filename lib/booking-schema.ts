@@ -68,6 +68,7 @@ export const bookingFormSchema = z
     endTime: z.string().trim().optional(),
     passengers: z.string().min(1, "Select passenger count"),
     luggage: z.string().min(1, "Select luggage count"),
+    flightNumber: z.string().trim().optional(),
     serviceType: z.enum(serviceTypeValues, {
       message: "Select a service type",
     }),
@@ -112,6 +113,14 @@ export const bookingFormSchema = z
         message: "Select an end time",
       });
     }
+
+    if (data.serviceType === "airport" && !data.flightNumber) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["flightNumber"],
+        message: "Enter your flight number",
+      });
+    }
   });
 
 export type BookingFormValues = z.infer<typeof bookingFormSchema>;
@@ -127,6 +136,7 @@ export const bookingFormDefaultValues: BookingFormValues = {
   endTime: "",
   passengers: "1",
   luggage: "1",
+  flightNumber: "",
   serviceType: "airport",
   fullName: "",
   email: "",
@@ -135,9 +145,10 @@ export const bookingFormDefaultValues: BookingFormValues = {
 };
 
 export const bookingSteps = [
-  { id: 1, title: "Journey Type", fields: ["journeyType"] as const },
+  { id: 1, title: "Service Type", fields: ["serviceType"] as const },
+  { id: 2, title: "Journey Type", fields: ["journeyType"] as const },
   {
-    id: 2,
+    id: 3,
     title: "Trip Details",
     fields: [
       "pickupLocation",
@@ -149,9 +160,9 @@ export const bookingSteps = [
       "endTime",
       "passengers",
       "luggage",
+      "flightNumber",
     ] as const,
   },
-  { id: 3, title: "Service Type", fields: ["serviceType"] as const },
   {
     id: 4,
     title: "Your Details",

@@ -10,8 +10,10 @@ import {
   Handshake,
   Heart,
   MapPin,
+  Navigation,
   PlaneLanding,
   ShieldCheck,
+  Ship,
   Users,
 } from "lucide-react";
 import type { Metadata } from "next";
@@ -127,25 +129,25 @@ const melbourneServices = [
     icon: PlaneLanding,
     title: "Airport Transfers",
     description: "Flight-tracked pickups and drop-offs at Melbourne and Avalon airports.",
-    href: "/airport-transfers",
+    href: "/melbourne-airport-transfers",
   },
   {
     icon: Building2,
     title: "City Transfers",
     description: "Door-to-door transfers around the CBD, Southbank and inner suburbs.",
-    href: "/city-transfers",
+    href: "/melbourne-city-transfers",
   },
   {
     icon: MapPin,
     title: "Hotel Transfers",
     description: "Seamless transfers between Melbourne hotels, the airport and the city.",
-    href: "/hotel-transfers",
+    href: "/melbourne-hotel-transfers",
   },
   {
     icon: Briefcase,
     title: "Corporate Chauffeur",
     description: "Reliable business travel for Melbourne executives and visiting clients.",
-    href: "/corporate-chauffeur",
+    href: "/melbourne-corporate-chauffeur",
   },
   {
     icon: Crown,
@@ -157,7 +159,13 @@ const melbourneServices = [
     icon: Heart,
     title: "Wedding Chauffeur",
     description: "Elegant, on-time transport for your wedding day across Melbourne.",
-    href: "/wedding-chauffeur",
+    href: "/melbourne-wedding-chauffeur",
+  },
+  {
+    icon: Ship,
+    title: "Cruise Transfers",
+    description: "Transfers to and from Station Pier and Port Melbourne.",
+    href: "/melbourne-cruise-transfers",
   },
   {
     icon: Users,
@@ -170,6 +178,33 @@ const melbourneServices = [
     title: "Private Driver",
     description: "Personal chauffeur hire by the hour or day, anywhere in Melbourne.",
     href: "/private-chauffeur",
+  },
+];
+
+const melbourneRouteGuides = [
+  {
+    icon: Navigation,
+    title: "Airport → CBD",
+    description: "Distance, travel time and fixed pricing for this route.",
+    href: "/melbourne-airport-to-cbd",
+  },
+  {
+    icon: Navigation,
+    title: "Airport → Southbank",
+    description: "Distance, travel time and fixed pricing for this route.",
+    href: "/melbourne-airport-to-southbank",
+  },
+  {
+    icon: Navigation,
+    title: "Airport → St Kilda",
+    description: "Distance, travel time and fixed pricing for this route.",
+    href: "/melbourne-airport-to-st-kilda",
+  },
+  {
+    icon: Navigation,
+    title: "Airport → Docklands",
+    description: "Distance, travel time and fixed pricing for this route.",
+    href: "/melbourne-airport-to-docklands",
   },
 ];
 
@@ -589,6 +624,13 @@ export default function MelbourneChauffeurServicePage() {
         faqs={faqs}
         image="/faq.jpg"
         imageAlt="Packed suitcase ready for travel"
+      />
+
+      <ServiceOfferings
+        eyebrow="Plan Your Trip"
+        title="Explore Popular Melbourne Routes"
+        items={melbourneRouteGuides}
+        tone="ivory"
       />
 
       <ServiceCTA

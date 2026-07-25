@@ -20,6 +20,7 @@ export const publicLeadSchema = z
     endTime: z.string().trim().optional(),
     passengers: z.coerce.number().int().min(1).max(20),
     luggage: z.coerce.number().int().min(0).max(20),
+    flightNumber: z.string().trim().optional(),
     serviceSlug: z.string().min(1),
     fullName: z.string().trim().min(2),
     email: z.string().trim().email(),
@@ -35,6 +36,14 @@ export const publicLeadSchema = z
         code: "custom",
         path: ["dropoffLocation"],
         message: "Enter a drop-off location",
+      });
+    }
+
+    if (data.serviceSlug === "airport" && !data.flightNumber) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["flightNumber"],
+        message: "Enter a flight number",
       });
     }
   });

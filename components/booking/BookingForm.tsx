@@ -13,6 +13,7 @@ import {
   MapPin,
   Navigation,
   Phone,
+  PlaneLanding,
   User,
   Users,
 } from "lucide-react";
@@ -136,6 +137,44 @@ export function BookingForm() {
         {currentStep === 1 && (
           <FormField
             control={form.control}
+            name="serviceType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Service Type</FormLabel>
+                <RadioGroup
+                  value={field.value}
+                  onValueChange={field.onChange}
+                  className="grid grid-cols-2 gap-3 sm:grid-cols-4"
+                >
+                  {serviceTypeOptions.map((option) => (
+                    <label
+                      key={option.value}
+                      className="group relative flex cursor-pointer flex-col items-center gap-2 rounded-2xl border-2 border-border bg-white p-4 text-center transition-colors has-[[data-checked]]:border-brand-gold has-[[data-checked]]:bg-brand-gold/5"
+                    >
+                      <RadioGroupItem
+                        value={option.value}
+                        aria-label={option.label}
+                        className="sr-only"
+                      />
+                      <option.icon
+                        className="size-5 text-brand-navy"
+                        aria-hidden
+                      />
+                      <span className="text-xs font-semibold text-brand-ink">
+                        {option.label}
+                      </span>
+                    </label>
+                  ))}
+                </RadioGroup>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+
+        {currentStep === 2 && (
+          <FormField
+            control={form.control}
             name="journeyType"
             render={({ field }) => (
               <FormItem>
@@ -171,7 +210,7 @@ export function BookingForm() {
           />
         )}
 
-        {currentStep === 2 && (
+        {currentStep === 3 && (
           <div className="flex flex-col gap-4">
             <FormField
               control={form.control}
@@ -347,45 +386,26 @@ export function BookingForm() {
                 )}
               />
             </div>
-          </div>
-        )}
 
-        {currentStep === 3 && (
-          <FormField
-            control={form.control}
-            name="serviceType"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Service Type</FormLabel>
-                <RadioGroup
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  className="grid grid-cols-2 gap-3 sm:grid-cols-4"
-                >
-                  {serviceTypeOptions.map((option) => (
-                    <label
-                      key={option.value}
-                      className="group relative flex cursor-pointer flex-col items-center gap-2 rounded-2xl border-2 border-border bg-white p-4 text-center transition-colors has-[[data-checked]]:border-brand-gold has-[[data-checked]]:bg-brand-gold/5"
-                    >
-                      <RadioGroupItem
-                        value={option.value}
-                        aria-label={option.label}
-                        className="sr-only"
-                      />
-                      <option.icon
-                        className="size-5 text-brand-navy"
-                        aria-hidden
-                      />
-                      <span className="text-xs font-semibold text-brand-ink">
-                        {option.label}
-                      </span>
-                    </label>
-                  ))}
-                </RadioGroup>
-                <FormMessage />
-              </FormItem>
+            {values.serviceType === "airport" && (
+              <FormField
+                control={form.control}
+                name="flightNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-1.5">
+                      <PlaneLanding className="size-3.5 text-brand-gold" aria-hidden />
+                      Flight Number
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g. QF409" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             )}
-          />
+          </div>
         )}
 
         {currentStep === 4 && (
@@ -517,6 +537,9 @@ export function BookingForm() {
                       ?.label
                   }
                 />
+                {values.serviceType === "airport" && (
+                  <ReviewRow label="Flight Number" value={values.flightNumber} />
+                )}
                 <ReviewRow label="Name" value={values.fullName} />
                 <ReviewRow label="Email" value={values.email} />
                 <ReviewRow label="Phone" value={values.phone} />

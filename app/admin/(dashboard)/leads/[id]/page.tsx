@@ -132,6 +132,7 @@ export default async function LeadDetailPage({
             {lead.endTime && <Detail label="End Time" value={lead.endTime} />}
             <Detail label="Passengers" value={String(lead.passengers)} />
             <Detail label="Luggage" value={String(lead.luggage)} />
+            {lead.flightNumber && <Detail label="Flight Number" value={lead.flightNumber} />}
             {lead.specialRequests && (
               <div className="sm:col-span-2">
                 <Detail label="Special Requests" value={lead.specialRequests} />

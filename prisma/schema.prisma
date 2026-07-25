@@ -118,6 +118,7 @@ model Lead {
   endTime         String?
   passengers      Int
   luggage         Int
+  flightNumber    String?
 
   serviceId String
   service   Service @relation(fields: [serviceId], references: [id])

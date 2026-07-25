@@ -135,6 +135,7 @@ create table leads (
   "endTime"         text,
   passengers        integer not null,
   luggage           integer not null,
+  "flightNumber"    text,
 
   "serviceId" text not null references services(id),
 

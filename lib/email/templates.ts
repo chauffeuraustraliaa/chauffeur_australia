@@ -27,6 +27,7 @@ export type LeadEmailData = {
   endTime: string | null;
   passengers: number;
   luggage: number;
+  flightNumber: string | null;
   specialRequests: string | null;
 };
 
@@ -52,6 +53,9 @@ function journeyDetailRows(data: LeadEmailData) {
   }
   rows.push(detailRow("Passengers", String(data.passengers)));
   rows.push(detailRow("Luggage", String(data.luggage)));
+  if (data.flightNumber) {
+    rows.push(detailRow("Flight Number", escapeHtml(data.flightNumber)));
+  }
   return rows.join("");
 }
 

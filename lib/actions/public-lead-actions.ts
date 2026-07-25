@@ -46,6 +46,7 @@ export async function submitPublicLead(
       endTime: data.endTime || null,
       passengers: data.passengers,
       luggage: data.luggage,
+      flightNumber: data.flightNumber || null,
       serviceId: service.id,
       specialRequests: data.specialRequests || null,
       status: "NEW",
@@ -74,6 +75,7 @@ export async function submitPublicLead(
       endTime: lead.endTime,
       passengers: lead.passengers,
       luggage: lead.luggage,
+      flightNumber: lead.flightNumber,
       specialRequests: lead.specialRequests,
     },
     adminNotifyEmail

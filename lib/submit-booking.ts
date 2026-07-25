@@ -29,6 +29,7 @@ export async function submitBookingRequest(
       endTime: values.endTime,
       passengers: Number(values.passengers),
       luggage: Number(values.luggage),
+      flightNumber: values.flightNumber,
       serviceSlug: values.serviceType,
       fullName: values.fullName,
       email: values.email,
