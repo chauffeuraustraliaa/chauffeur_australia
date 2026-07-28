@@ -8,6 +8,7 @@ const quickLinks = [
   { label: "Popular Routes", href: "#routes" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const serviceLinks = [

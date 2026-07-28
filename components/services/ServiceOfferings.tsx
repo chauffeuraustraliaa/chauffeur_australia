@@ -11,18 +11,25 @@ export type OfferingItem = {
   href?: string;
 };
 
+const columnClasses = {
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+} as const;
+
 export function ServiceOfferings({
   eyebrow,
   title,
   items,
   ctaHref = "/get-a-quote",
   tone = "white",
+  columns = 3,
 }: {
   eyebrow: string;
   title: string;
   items: OfferingItem[];
   ctaHref?: string;
   tone?: "white" | "ivory";
+  columns?: 3 | 4;
 }) {
   return (
     <section className={`${tone === "ivory" ? "bg-brand-ivory" : "bg-white"} py-[120px]`}>
@@ -36,7 +43,7 @@ export function ServiceOfferings({
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={`mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 ${columnClasses[columns]}`}>
             {items.map((item) => {
               const href = item.href ?? ctaHref;
               const isInternal = href.startsWith("/");

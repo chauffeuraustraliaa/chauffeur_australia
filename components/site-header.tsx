@@ -66,7 +66,10 @@ const serviceLinks = [
   },
 ];
 
-const navLinks = [{ label: "Routes", href: "/#routes" }];
+const navLinks = [
+  { label: "Routes", href: "/#routes" },
+  { label: "Contact", href: "/contact" },
+];
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
