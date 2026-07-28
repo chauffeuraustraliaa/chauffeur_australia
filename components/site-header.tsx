@@ -15,16 +15,6 @@ const serviceLinks = [
     description: "See every transfer service we offer",
   },
   {
-    label: "Airport Transfers",
-    href: "/airport-transfers",
-    description: "Luxury airport chauffeur pickup & drop-off",
-  },
-  {
-    label: "City Transfers",
-    href: "/city-transfers",
-    description: "Private, door-to-door transfers around the city",
-  },
-  {
     label: "Hotel Transfers",
     href: "/hotel-transfers",
     description: "Private transfers to and from your hotel",
@@ -66,10 +56,62 @@ const serviceLinks = [
   },
 ];
 
-const navLinks = [
-  { label: "Routes", href: "/#routes" },
-  { label: "Contact", href: "/contact" },
+const airportLinks = [
+  {
+    label: "Airport Transfers",
+    href: "/airport-transfers",
+    description: "Luxury airport chauffeur pickup & drop-off, nationwide",
+  },
+  {
+    label: "Melbourne Airport Transfers",
+    href: "/melbourne-airport-transfers",
+    description: "Flight-tracked pickups at Melbourne & Avalon airports",
+  },
 ];
+
+const cityLinks = [
+  {
+    label: "City Transfers",
+    href: "/city-transfers",
+    description: "Private, door-to-door transfers around any city",
+  },
+  {
+    label: "Melbourne City Transfers",
+    href: "/melbourne-city-transfers",
+    description: "Door-to-door transfers around Melbourne's CBD & suburbs",
+  },
+];
+
+const routeLinks = [
+  {
+    label: "Melbourne Airport → CBD",
+    href: "/melbourne-airport-to-cbd",
+    description: "Distance, travel time and fixed pricing",
+  },
+  {
+    label: "Melbourne Airport → St Kilda",
+    href: "/melbourne-airport-to-st-kilda",
+    description: "Distance, travel time and fixed pricing",
+  },
+  {
+    label: "Melbourne Airport → Southbank",
+    href: "/melbourne-airport-to-southbank",
+    description: "Distance, travel time and fixed pricing",
+  },
+  {
+    label: "Melbourne Airport → Docklands",
+    href: "/melbourne-airport-to-docklands",
+    description: "Distance, travel time and fixed pricing",
+  },
+];
+
+const navDropdowns = [
+  { label: "Airport", items: airportLinks },
+  { label: "City", items: cityLinks },
+  { label: "Routes", items: routeLinks },
+];
+
+const navLinks = [{ label: "Contact", href: "/contact" }];
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -134,6 +176,38 @@ export function SiteHeader() {
               </div>
             </div>
           </div>
+          {navDropdowns.map((dropdown) => (
+            <div key={dropdown.label} className="group relative">
+              <button
+                type="button"
+                className="flex items-center gap-1 text-sm font-medium text-white/85 transition-colors hover:text-brand-gold"
+              >
+                {dropdown.label}
+                <ChevronDown
+                  className="size-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                  aria-hidden
+                />
+              </button>
+              <div className="invisible absolute top-full left-0 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div className="grid w-[340px] gap-1 rounded-2xl border border-white/10 bg-brand-navy p-2 shadow-xl">
+                  {dropdown.items.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5"
+                    >
+                      <span className="block text-sm font-medium text-white">
+                        {link.label}
+                      </span>
+                      <span className="mt-0.5 block text-xs text-white/50">
+                        {link.description}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
           <Link
             href="/about"
             className="text-sm font-medium text-white/85 transition-colors hover:text-brand-gold"
@@ -190,6 +264,23 @@ export function SiteHeader() {
             >
               {link.label}
             </Link>
+          ))}
+          {navDropdowns.map((dropdown) => (
+            <div key={dropdown.label} className="contents">
+              <span className="px-3 pt-4 text-xs font-semibold tracking-[0.15em] text-white/40 uppercase">
+                {dropdown.label}
+              </span>
+              {dropdown.items.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-white/85 hover:bg-white/5 hover:text-brand-gold"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           ))}
           <Link
             href="/about"
