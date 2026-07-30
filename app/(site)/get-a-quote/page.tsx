@@ -19,9 +19,8 @@ import { ServiceCTA } from "@/components/services/ServiceCTA";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Book Your Chauffeur | Chauffeur Australia";
 const pageDescription =
   "Request a quote for premium chauffeur services, airport transfers, hotel transfers and corporate travel across Australia.";

@@ -26,9 +26,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Long Distance Transfers Australia | Interstate Chauffeur Service";
 const pageDescription =
   "Book long distance and interstate chauffeur transfers across Australia. Professional drivers, comfortable vehicles and fixed prices for city-to-city travel.";

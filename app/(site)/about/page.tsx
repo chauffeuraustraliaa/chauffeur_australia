@@ -26,9 +26,8 @@ import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { StatsSection } from "@/components/services/StatsSection";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle =
   "About Chauffeur Australia | Premium Chauffeur & Airport Transfer Specialists";
 const pageDescription =

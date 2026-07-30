@@ -30,9 +30,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Melbourne City Transfers | Luxury Chauffeur Around The CBD";
 const pageDescription =
   "Book premium Melbourne city transfers for meetings, shopping, restaurants, sightseeing and events. Professional chauffeurs, luxury vehicles and fixed pricing, available 24/7.";

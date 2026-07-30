@@ -24,9 +24,8 @@ import { ServiceCTA } from "@/components/services/ServiceCTA";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Melbourne Airport To Docklands Transfer | Fixed-Price Chauffeur Service";
 const pageDescription =
   "Book a fixed-price chauffeur transfer from Melbourne Airport to Docklands. Flight-tracked pickups, luxury vehicles and a professional driver, available 24/7.";

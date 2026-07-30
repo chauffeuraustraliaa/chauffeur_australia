@@ -19,9 +19,8 @@ import { FAQ } from "@/components/contact/FAQ";
 import { GoogleMap } from "@/components/contact/GoogleMap";
 import { ServiceLinks } from "@/components/contact/ServiceLinks";
 import { Reveal } from "@/components/reveal";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Contact Chauffeur Australia | Get a Quote for Premium Chauffeur Services";
 const pageDescription =
   "Contact Chauffeur Australia for luxury airport transfers, corporate travel, hotel transfers and private chauffeur services across Australia. Request your personalised quote today.";

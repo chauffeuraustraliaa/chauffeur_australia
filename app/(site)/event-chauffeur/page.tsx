@@ -25,9 +25,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Event Chauffeur Australia | Private Event Transport Service";
 const pageDescription =
   "Book a private event chauffeur across Australia. Professional drivers, luxury and group vehicles and fixed prices for concerts, galas and celebrations.";

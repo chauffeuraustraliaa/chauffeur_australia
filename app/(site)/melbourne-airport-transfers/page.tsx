@@ -28,9 +28,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Melbourne Airport Transfers | Luxury Chauffeur Pickups & Drop-Offs";
 const pageDescription =
   "Book premium Melbourne Airport transfers with flight monitoring, meet and greet service and fixed pricing. Luxury chauffeur pickups and drop-offs at every terminal, 24/7.";

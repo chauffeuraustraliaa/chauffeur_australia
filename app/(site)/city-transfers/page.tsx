@@ -26,9 +26,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "City Transfers Australia | Private Luxury Chauffeur Service";
 const pageDescription =
   "Book private, door-to-door city transfers across Australia. Professional chauffeurs, luxury vehicles and fixed, transparent pricing for every trip.";

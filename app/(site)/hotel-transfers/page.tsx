@@ -29,9 +29,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Hotel Transfers Australia | Luxury Hotel Chauffeur Service";
 const pageDescription =
   "Book private hotel transfers across Australia. Professional chauffeurs, luxury vehicles and fixed prices for airport-to-hotel and hotel-to-hotel travel.";

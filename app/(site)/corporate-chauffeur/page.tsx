@@ -28,9 +28,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Corporate Chauffeur Australia | Business Chauffeur Service";
 const pageDescription =
   "Book professional corporate chauffeur services across Australia. Reliable executive transport, staff transfers and fixed pricing for business travel.";

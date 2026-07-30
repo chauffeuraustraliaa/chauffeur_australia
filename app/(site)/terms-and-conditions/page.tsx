@@ -31,9 +31,8 @@ import { PolicySection } from "@/components/legal/PolicySection";
 import { TableOfContents } from "@/components/legal/TableOfContents";
 import { Reveal } from "@/components/reveal";
 import { ServiceCTA } from "@/components/services/ServiceCTA";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Terms & Conditions | Chauffeur Australia";
 const pageDescription =
   "Read Chauffeur Australia's booking terms, cancellation policy, payment terms and customer responsibilities.";

@@ -26,9 +26,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { StatsSection } from "@/components/services/StatsSection";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Airport Chauffeur Transfers Australia | Luxury Airport Transfers";
 const pageDescription =
   "Book premium airport chauffeur transfers across Australia. Professional drivers, luxury vehicles, fixed prices and reliable airport pickup services.";

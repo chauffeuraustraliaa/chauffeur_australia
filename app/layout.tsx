@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Oswald } from "next/font/google";
 import "./globals.css";
+import { siteUrl } from "@/lib/site-config";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,8 +19,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

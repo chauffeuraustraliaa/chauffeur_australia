@@ -27,9 +27,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Brisbane Chauffeur Service | Luxury Airport Transfers & Private Drivers";
 const pageDescription =
   "Book premium chauffeur services in Brisbane. Luxury airport transfers, corporate travel, hotel transfers, event transportation and private chauffeurs available 24/7.";

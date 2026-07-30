@@ -26,9 +26,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Executive Transfers Australia | VIP Chauffeur Service";
 const pageDescription =
   "Book premium executive transfers across Australia. Discreet chauffeurs, top-tier vehicles and fixed pricing for business leaders and VIP travellers.";

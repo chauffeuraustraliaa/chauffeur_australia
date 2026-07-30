@@ -24,9 +24,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Cruise Transfers Australia | Private Cruise Port Chauffeur";
 const pageDescription =
   "Book private cruise port transfers across Australia. Professional chauffeurs, luggage assistance and fixed prices to and from every major cruise terminal.";

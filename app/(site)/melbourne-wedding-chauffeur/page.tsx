@@ -30,9 +30,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Wedding Chauffeur Melbourne | Luxury Bridal Car Hire";
 const pageDescription =
   "Book a wedding chauffeur in Melbourne for the bride, groom and guests. Luxury vehicles, on-time service and photography-ready cars for your wedding day, available 24/7.";

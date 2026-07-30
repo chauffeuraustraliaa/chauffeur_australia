@@ -25,9 +25,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Wedding Chauffeur Australia | Luxury Wedding Car Hire";
 const pageDescription =
   "Book a luxury wedding chauffeur across Australia. Professional drivers, elegant vehicles and fixed prices for bridal parties, guests and getaway cars.";

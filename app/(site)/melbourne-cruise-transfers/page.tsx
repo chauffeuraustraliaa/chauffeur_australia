@@ -28,9 +28,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Melbourne Cruise Transfers | Station Pier & Port Melbourne Chauffeur";
 const pageDescription =
   "Book premium Melbourne cruise transfers to and from Station Pier, Port Melbourne. Airport, hotel and city transfers to your cruise, with fixed pricing and 24/7 availability.";

@@ -28,9 +28,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Melbourne Hotel Transfers | Luxury Chauffeur To & From Your Hotel";
 const pageDescription =
   "Book premium Melbourne hotel transfers between the airport, your hotel, restaurants and cruise terminals. Professional chauffeurs, luxury vehicles and fixed pricing, 24/7.";

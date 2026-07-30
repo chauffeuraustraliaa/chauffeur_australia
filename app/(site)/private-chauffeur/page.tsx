@@ -26,9 +26,8 @@ import { ServiceDetailList } from "@/components/services/ServiceDetailList";
 import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Private Chauffeur Australia | Personal Chauffeur Hire";
 const pageDescription =
   "Book a private chauffeur by the hour, day or trip across Australia. Professional drivers, luxury vehicles and fixed prices for personal travel.";

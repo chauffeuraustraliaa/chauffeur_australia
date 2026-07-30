@@ -29,9 +29,8 @@ import { ServiceFAQ } from "@/components/services/ServiceFAQ";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceOfferings } from "@/components/services/ServiceOfferings";
 import { Testimonials } from "@/components/services/Testimonials";
+import { siteUrl } from "@/lib/site-config";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.australiataxiservice.com.au";
 const pageTitle = "Corporate Chauffeur Melbourne | Business Travel & Executive Transfers";
 const pageDescription =
   "Book a corporate chauffeur in Melbourne for executives, meetings, conferences and roadshows. Professional drivers, corporate accounts and fixed pricing, available 24/7.";
