@@ -1,7 +1,7 @@
 "use client";
 
-import { AlertTriangle, Loader2, Lock, Mail } from "lucide-react";
-import { useActionState } from "react";
+import { AlertTriangle, Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react";
+import { useActionState, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,7 @@ export function LoginForm() {
     loginAction,
     null
   );
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
@@ -36,13 +37,28 @@ export function LoginForm() {
           <Lock className="size-3.5 text-brand-gold" aria-hidden />
           Password
         </Label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          required
-        />
+        <div className="relative">
+          <Input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            required
+            className="pr-9"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((show) => !show)}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="absolute top-1/2 right-2 flex size-5 -translate-y-1/2 items-center justify-center text-muted-foreground hover:text-brand-navy"
+          >
+            {showPassword ? (
+              <EyeOff className="size-4" aria-hidden />
+            ) : (
+              <Eye className="size-4" aria-hidden />
+            )}
+          </button>
+        </div>
       </div>
 
       <div className="flex items-center justify-between text-sm">
